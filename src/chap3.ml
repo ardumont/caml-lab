@@ -52,3 +52,23 @@ let rec tokenize l = match l with
 
 tokenize (explode "{a(is)ignored}");;
 (* - : token list = [CL; PL; PR; CR] *)
+
+let test_par l =
+  let rec test_aux l p = match l, p with
+      (PL::l', _)      -> test_aux l' (PL::p)
+    | (CL::l', _)      -> test_aux l' (CL::p)
+    | (PR::l', PL::p') -> test_aux l' p'
+    | (CR::l', CL::p') -> test_aux l' p'
+    | ([], [])         -> true
+    | (_, _)           -> false
+  in test_aux l [];;
+(* val test_par : token list -> bool = <fun> *)
+
+test_par [];;
+(* - : bool = true *)
+
+test_par (tokenize (explode "{(){}}"));;
+(* - : bool = true *)
+
+test_par (tokenize (explode "{()({}}"));;
+(* - : bool = false *)
