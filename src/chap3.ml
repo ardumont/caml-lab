@@ -1,3 +1,5 @@
+(** stack **)
+
 let empty = [];;
 (* val empty : 'a list = [] *)
 
@@ -13,3 +15,14 @@ let pop p = match p with
 
 pop [1;2;3];;
 (* - : int * int list = (1, [2; 3]) *)
+
+(** String **)
+
+String.length "123";;
+(* - : int = 3 *)
+
+String.get "123" 0;;
+(* - : char = '1' *)
+
+String.sub "this is a string" 5 2;;
+(* - : string = "is" *)
