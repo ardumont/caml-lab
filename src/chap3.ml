@@ -88,3 +88,20 @@ let remove fifo = match fifo with
 
 remove [2;3;1];;
 (* - : int list = [3; 1] *)
+
+(** List manipulation **)
+
+List.map fst [(1,2); (3,4); (5,6)];;
+(* - : int list = [1; 3; 5] *)
+
+List.mem 1 [1;2;4];;
+- : bool = true
+List.mem 3 [1;2;4];;
+(* - : bool = false *)
+
+List.assoc 'a' [('a', 1); ('b', 2)];;
+(* - : int = 1 *)
+List.assoc 'b' [('a', 1); ('b', 2)];;
+(* - : int = 2 *)
+List.assoc 'c' [('a', 1); ('b', 2)];;
+(* Exception: Not_found. *)
