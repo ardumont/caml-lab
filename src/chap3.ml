@@ -26,3 +26,29 @@ String.get "123" 0;;
 
 String.sub "this is a string" 5 2;;
 (* - : string = "is" *)
+
+(** problem - good parenthesis **)
+
+type token = PL | PR | CL | CR;;
+(* type token = PL | PR | CL | CR *)
+
+let rec explode s =
+  if s = "" then [] else
+    (String.get s 0) ::
+      explode (String.sub s 1 ((String.length s) - 1));;
+(* val explode : string -> char list = <fun> *)
+
+explode "123";;
+(* - : char list = ['1'; '2'; '3'] *)
+
+let rec tokenize l = match l with
+    []     -> []
+  | '('::t -> PL :: tokenize t
+  | ')'::t -> PR :: tokenize t
+  | '{'::t -> CL :: tokenize t
+  | '}'::t -> CR :: tokenize t
+  | _  ::t -> tokenize t;;
+(* val tokenize : char list -> token list = <fun> *)
+
+tokenize (explode "{a(is)ignored}");;
+(* - : token list = [CL; PL; PR; CR] *)
