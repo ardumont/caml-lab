@@ -72,3 +72,19 @@ test_par (tokenize (explode "{(){}}"));;
 
 test_par (tokenize (explode "{()({}}"));;
 (* - : bool = false *)
+
+(** fifo **)
+
+let add x fifo = fifo @ [x];;
+(* val add : 'a -> 'a list -> 'a list = <fun> *)
+
+add 1 [2;3];;
+(* - : int list = [2; 3; 1] *)
+
+let remove fifo = match fifo with
+    [] -> []
+  | (h::t) -> t;;
+(* val remove : 'a list -> 'a list = <fun> *)
+
+remove [2;3;1];;
+(* - : int list = [3; 1] *)
