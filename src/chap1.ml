@@ -28,10 +28,10 @@ List.tl['1';'2';'3'];;
 1::2::3::4::[];;
 (* - : int list = [1; 2; 3; 4] *)
 
-# [1 ; 2] = [1 ; 2];;
+[1 ; 2] = [1 ; 2];;
 (* - : bool = true *)
 
-# [1 ; 2] = [2 ; 3];;
+[1 ; 2] = [2 ; 3];;
 (* - : bool = false *)
 
 let x = 2 ;;
@@ -58,7 +58,7 @@ let test = (fun x -> x +. 0.1);;
 test 0.5;;
 (* - : float = 0.6 *)
 
-let add = (fun x -> (fun y -> x + y));;
+let add x y =  x + y;;
 (* val add : int -> int -> int = <fun> *)
 
 let succ = add 1;;
